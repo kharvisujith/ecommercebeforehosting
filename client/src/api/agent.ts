@@ -9,9 +9,11 @@ import { PaginationResponse } from "../models/pagination";
 
 
 
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? "http://localhost:16310/api/" : "/api/"
+
 //axios.defaults.baseURL = process.env.REACT_APP_API_URL
 
-axios.defaults.baseURL = "http://localhost:16310/api/"
+//axios.defaults.baseURL = "http://localhost:16310/api/"
 
 axios.defaults.withCredentials = true
 

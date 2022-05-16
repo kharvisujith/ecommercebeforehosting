@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Restore.Data.Migrations
 {
-    public partial class orderEnittyAdded : Migration
+    public partial class SqlliteInital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +54,9 @@ namespace Restore.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BuyerId = table.Column<string>(type: "TEXT", nullable: true)
+                    BuyerId = table.Column<string>(type: "TEXT", nullable: true),
+                    PaymentIntentId = table.Column<string>(type: "TEXT", nullable: true),
+                    ClientSecret = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,7 +80,8 @@ namespace Restore.Data.Migrations
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Subtotal = table.Column<long>(type: "INTEGER", nullable: false),
                     DeliveryFree = table.Column<long>(type: "INTEGER", nullable: false),
-                    OrderStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                    OrderStatus = table.Column<int>(type: "INTEGER", nullable: false),
+                    PaymentIntentId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -288,12 +291,12 @@ namespace Restore.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "7c286a06-fb37-4e09-b144-41f03743c9b1", "Member", "MEMBER" });
+                values: new object[] { 1, "1dfc5e70-8240-4a50-8ed2-48f466655da6", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "a14fb636-6755-4124-8e41-1032a0ef99ce", "Admin", "ADMIN" });
+                values: new object[] { 2, "36d658f2-62a6-4c7e-98b2-8d32f88ef5b2", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

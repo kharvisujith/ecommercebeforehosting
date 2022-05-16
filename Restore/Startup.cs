@@ -72,7 +72,7 @@ namespace Restore
             // This is extra adding for ef
             services.AddDbContext<StoreContext>(opt =>
             {
-                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                object p = opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
 
@@ -123,8 +123,8 @@ namespace Restore
             app.UseRouting();
 
           //for hosting purpose
-          //  app.UseDefaultFiles();
-          //  app.UseStaticFiles();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseCors(opt =>
             {
@@ -141,7 +141,7 @@ namespace Restore
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-              //  endpoints.MapFallbackToController("Index","Fallback");
+                endpoints.MapFallbackToController("Index","Fallback");
             });
         }
     }

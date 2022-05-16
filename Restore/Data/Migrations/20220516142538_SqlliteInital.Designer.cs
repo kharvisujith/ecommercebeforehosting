@@ -9,8 +9,8 @@ using Restore.Data;
 namespace Restore.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20220512111813_PaymentIntentAdded")]
-    partial class PaymentIntentAdded
+    [Migration("20220516142538_SqlliteInital")]
+    partial class SqlliteInital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -274,14 +274,14 @@ namespace Restore.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "22ee4ae2-5806-4f6b-9390-970fc9623344",
+                            ConcurrencyStamp = "1dfc5e70-8240-4a50-8ed2-48f466655da6",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "afa073ab-b0eb-40b3-b77c-8b8a85446389",
+                            ConcurrencyStamp = "36d658f2-62a6-4c7e-98b2-8d32f88ef5b2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

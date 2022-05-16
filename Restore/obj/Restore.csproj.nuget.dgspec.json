@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\sujith\\Udeyme_course\\Restore\\Restore.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\working_before_hosting2\\Restore\\Restore.csproj": {}
   },
   "projects": {
-    "C:\\sujith\\Udeyme_course\\Restore\\Restore.csproj": {
+    "C:\\Users\\Admin\\Desktop\\working_before_hosting2\\Restore\\Restore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\sujith\\Udeyme_course\\Restore\\Restore.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\working_before_hosting2\\Restore\\Restore.csproj",
         "projectName": "Restore",
-        "projectPath": "C:\\sujith\\Udeyme_course\\Restore\\Restore.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\working_before_hosting2\\Restore\\Restore.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\sujith\\Udeyme_course\\Restore\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\working_before_hosting2\\Restore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,6 +65,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Stripe.net": {
               "target": "Package",
