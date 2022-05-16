@@ -1,0 +1,42 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Restore.DTOs;
+using Restore.Entities.OrderAggregate;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Restore.Extensions
+{
+    public static class OrderExtensions
+    {
+        private static object newOrderItemDto;
+
+        public static IQueryable<OrderDto> ProjectOrderToOrderDto(this IQueryable<Order> query)
+        {
+            return query
+                .Select(order => new OrderDto
+                {
+                    Id = order.Id,
+                    BuyerId = order.BuyerId,
+                    OrderDate = order.OrderDate,
+                    ShippingAddress = order.ShippingAddress,
+                    DeliveryFree = order.DeliveryFree,
+                    Subtotal = order.Subtotal,
+                    OrderStatus = order.OrderStatus.ToString(),
+                    Total = order.GetTotal(),
+                    OrderItems = order.OrderItems.Select(item => new OrderItemDto
+                    {
+                        ProductId = item.ItemOrdered.ProductId,
+                        Name = item.ItemOrdered.Name,
+                        PictureUrl = item.ItemOrdered.PictureUrl,
+                        Price = item.Price,
+                        Quantity = item.Quantity
+                    }).ToList()
+
+
+
+                }).AsNoTracking();
+        }
+    }
+}
