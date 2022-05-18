@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Restore.Extensions;
 using Restore.RequestHelpers;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
+using Restore.DTOs;
+using AutoMapper;
+using Restore.Controllers.Services;
 
 namespace Restore.Controllers
 {
@@ -17,9 +21,14 @@ namespace Restore.Controllers
     public class ProductsController : BaseApiController
     {
         private readonly StoreContext _context;
-        public ProductsController(StoreContext context)
+        private readonly IMapper _mapper;
+        private readonly ImageService _imageService;
+
+        public ProductsController(StoreContext context, IMapper mapper, ImageService imageService)
         {
-            this._context = context;
+            _context = context;
+            _mapper = mapper;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -46,7 +55,7 @@ namespace Restore.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetProduct")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -65,5 +74,95 @@ namespace Restore.Controllers
             return Ok(new { brands, types });
 
         }
+
+        //[Authorize(Roles="Admin")]
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<Product>> CreatePoduct([FromForm]CreateProductDto productDto)
+        {
+            var product = _mapper.Map<Product>(productDto);
+
+           /* if (productDto.File != null)
+            {
+                var imageResult = await _imageService.AddImageAsync(productDto.File);
+
+                if (imageResult.Error != null)
+                    return BadRequest(new ProblemDetails { Title = imageresult.Error.Message });
+
+                product.PictureUrl = imageresult.SecureUrl.ToString();
+                product.PublicId = imageResult.PublicId;
+            }*/
+
+            _context.Products.Add(product);
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (result) return CreatedAtRoute("GetProduct", new { Id = product.Id }, product);
+
+            return BadRequest(new ProblemDetails { Title = "Problem creating new product" });
+      
+        }
+       // [Authorize(Roles ="Admin")]
+       [Authorize]
+       [HttpPut]
+       public async Task<ActionResult<Product>> UpdateProduct([FromForm]UpdateProductDto productDto)
+        {
+            var product = await _context.Products.FindAsync(productDto.Id);
+
+            if (product == null) return NotFound();
+
+            _mapper.Map(productDto, product);
+
+           /* if(productDto.File != null)
+            {
+                var imageResult = await _imageService.AddImageAsync(productDto.File);
+
+                if (imageResult.Error != null)
+                    return BadRequest(new ProblemDetails { Title = imageResult.Error.Message });
+
+                if (!string.IsNullOrEmpty(product.PublicId))
+                    await _imageService.DeleteImageAsync(product.PublicId);
+
+                product.PictureUrl = imageResult.SecureUrl.ToString();
+                product.PublicId = imageResult.PublicId;
+            }*/
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (result) return Ok(product);
+
+            return BadRequest(new ProblemDetails { Title = "Problem updating prodcut" });
+        }
+
+        // [Authorize(Roles ="Admin")]
+        [Authorize]
+        //[HttpDelete("{id}")]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteProduct([FromQuery]int id)
+        {
+            System.Diagnostics.Debug.WriteLine(" deleete product is calleddd1");
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null) return NotFound();
+
+           /* if (!string.IsNullOrEmpty(product.PublicId))
+                await _imageService.DeleteImageAsync(product.PublicId);*/
+
+            _context.Products.Remove(product);
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            System.Diagnostics.Debug.WriteLine(" deleete product is calleddd");
+
+            if (result) return Ok();
+
+            return BadRequest(new ProblemDetails { Title = "Problem deleting product" });
+
+        }
+
+
+
+
     }
 }
+

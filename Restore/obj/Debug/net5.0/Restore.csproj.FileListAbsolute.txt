@@ -148,3 +148,11 @@ C:\Users\Admin\Desktop\working_before_hosting2\Restore\obj\Debug\net5.0\Restore.
 C:\Users\Admin\Desktop\working_before_hosting2\Restore\obj\Debug\net5.0\Restore.genruntimeconfig.cache
 C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\Npgsql.dll
 C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\CloudinaryDotNet.dll
+C:\Users\Admin\Desktop\working_before_hosting2\Restore\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll

@@ -13,6 +13,7 @@ import ProductSearch from "./ProductSearch";
 import RadioButtonGroup from "../../components/RadioButtonGroup";
 import CheckBoxButtons from "../../components/CheckBoxButtons";
 import AppPagination from "../../components/AppPagination";
+import useProducts from "../../hooks/useProducts";
 
 
 
@@ -24,28 +25,11 @@ const sortOptions = [
 
 
 const Catalog = ()=>{
-    
 
-          const products = useAppSelector(productSelectors.selectAll)
-
-          const dispatch = useAppDispatch()
-          const {productsLoaded, status, filtersLoaded, types, brands, productParams, metaData} = useAppSelector(state=> state.catalog)
-
-
-
-    useEffect(()=>{
-
-        if(!productsLoaded) dispatch( fetchProductsAsync())
-        console.log("productsloaded useeffect is called")  
-
-    },[productsLoaded,dispatch])
-
-    useEffect(()=>{
-        if(!filtersLoaded) dispatch(fetchfiltersAsync())
-
-    },[filtersLoaded, dispatch])
-
-
+    const {products, brands, types, filtersLoaded,  metaData} = useProducts()
+    const {productParams} = useAppSelector(state=> state.catalog)
+    const dispatch = useAppDispatch()
+   
      if(!filtersLoaded) return <LoadingComponent/>
 
 

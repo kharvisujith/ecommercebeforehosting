@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Restore.Data.Migrations
 {
-    public partial class SqlliteInital : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -291,12 +291,12 @@ namespace Restore.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "1dfc5e70-8240-4a50-8ed2-48f466655da6", "Member", "MEMBER" });
+                values: new object[] { 1, "a04fb8ff-d4b5-4c9b-a2d5-828bedac8bd8", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "36d658f2-62a6-4c7e-98b2-8d32f88ef5b2", "Admin", "ADMIN" });
+                values: new object[] { 2, "4aa7cfd0-5327-420b-8a04-58e92dfa82d0", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
