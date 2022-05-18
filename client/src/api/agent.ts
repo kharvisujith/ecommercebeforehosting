@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { history } from './../index';
 import { store, useAppSelector } from "../store/configureStore";
 import { PaginationResponse } from "../models/pagination";
+import { RequestPageSharp } from "@mui/icons-material";
 
 
 
@@ -93,7 +94,13 @@ const request = {
     get : (url:string, params?:URLSearchParams) => axios.get(url, {params}).then(resBody),
     post : (url:string, body:{}) => axios.post(url, body).then(resBody),
     put : (url:string, body:{}) => axios.put(url, body).then(resBody),
-    delete: (url:string) => axios.delete(url).then(resBody)
+    delete: (url:string) => axios.delete(url).then(resBody),
+    postForm : (url:string, data: FormData) => axios.post(url, data, {
+        headers : {'Content-type':'multipart/form-data'}
+    }).then(resBody),
+    putForm : (url:string, data: FormData) => axios.put(url, data, {
+        headers : {'Content-type':'multipart/form-data'}
+    }).then(resBody)
 }
 
 const catalog = {
@@ -138,13 +145,28 @@ const payment= {
     createPaymentIntent : ()=> request.post('payment', {})
 }
 
+const createFormData = (item:any) => {
+    let formData = new FormData()
+    for (const key in item){
+        formData.append(key, item[key])
+    }
+    return formData
+}
+
+const admin  ={
+    createProduct: (product:any) => request.postForm('products', createFormData(product)),
+    updateProduct: (product:any) => request.putForm('products', createFormData(product)),
+    deleteProduct: (id:number) => request.delete(`products/${id}`),
+}
+
 const agent = {
     catalog,
     testErrors,
     basket,
     account,
     orders,
-    payment
+    payment,
+    admin
 }
 
 export default agent;

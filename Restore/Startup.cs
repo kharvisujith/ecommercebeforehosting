@@ -20,6 +20,7 @@ using Restore.Controllers.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Restore.RequestHelpers;
 
 namespace Restore
 {
@@ -37,6 +38,8 @@ namespace Restore
         {
 
             services.AddControllers();
+            //for automapping
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Restore", Version = "v1" });
@@ -104,6 +107,7 @@ namespace Restore
             services.AddAuthorization();
             services.AddScoped<TokenServices>();
             services.AddScoped<PaymentServices>();
+            services.AddScoped<ImageService>();
         }
 
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

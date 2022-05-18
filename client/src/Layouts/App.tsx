@@ -22,6 +22,7 @@ import { fetchCurrentUser } from '../Features/account/accountSlice';
 import PrivateRoute from './PrivateRoute';
 import Orders from '../Features/orders/Orders';
 import CheckoutWrapper from '../Features/Checkout/CheckoutWrapper';
+import Inventory from '../admin/Inventory';
 
 
 const App = ()=> {
@@ -82,6 +83,7 @@ const App = ()=> {
           <Route  path= {'/server-error'} component = {ServerError} />
           <PrivateRoute  path= {'/checkout'} component = {CheckoutWrapper} />
           <PrivateRoute  path= {'/orders'} component = {Orders} />
+          <PrivateRoute  path= {'/inventory'} component = {Inventory} />
           <Route  path= {'/login'} component = {Login} />
           <Route  path= {'/register'} component = {Register} />
           

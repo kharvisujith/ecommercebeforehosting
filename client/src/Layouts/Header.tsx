@@ -70,8 +70,32 @@ const Header = ({setMode}:Props)=>{
                                     {title.toUpperCase()}
                                 </ListItem>
                             )
-                            })
-                        }
+                            })}
+
+                            {user && 
+
+                                <ListItem 
+                                    component={NavLink}
+                                    to={'/inventory'} 
+                                    sx={{
+                                        color:'inherit',
+                                        typography:'h6',
+                                        '&:hover' : {
+                                            color:'grey.500'
+                                        },
+                                        '&.active':{
+                                            color:'text.secondary'
+                                        }
+                                    
+                                    }} 
+                                >
+                                    INVENTORY
+                                </ListItem>
+                                }
+
+                            
+                        
+                        
                     </List>
                 
 
